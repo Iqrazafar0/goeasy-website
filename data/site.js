@@ -8,9 +8,9 @@ export const site = {
   licenseNo: "1535456",
   licenseAuthority: "Department of Economy and Tourism, Dubai",
 
-  phoneDisplay: "+971 55 909 8306",
-  phoneLink: "+971559098306",
-  whatsapp: "971559098306", // sirf numbers, + ke baghair
+    phoneDisplay: "+971 55 793 1183",
+  phoneLink: "+971557931183",
+  whatsapp: "971557931183", // sirf numbers, + ke baghair
   email: "sales@goeasyadventure.com",
 
   // Client ka bataya hua branch address
