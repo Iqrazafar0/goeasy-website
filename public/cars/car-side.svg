@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 70">
+  <!-- Small side-view car for the hero road animation (faces right) -->
+  <path d="M8 50c0-7 3-11 10-12l22-4c9-8 19-14 37-15 17-1 31 4 43 14l26 4c9 2 14 7 14 14v4H8z" fill="#F7F5F0"/>
+  <path d="M48 34c8-7 17-11 30-11.5V34zM84 22.5c13 .2 23 4 32 11.5H84z" fill="#16294A"/>
+  <path d="M150 42h10" stroke="#C4A26A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M12 46h6" stroke="#C4A26A" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  <g class="wheel"><circle cx="48" cy="54" r="11" fill="#0A1628"/><circle cx="48" cy="54" r="5" fill="#C4A26A"/></g>
+  <g class="wheel"><circle cx="146" cy="54" r="11" fill="#0A1628"/><circle cx="146" cy="54" r="5" fill="#C4A26A"/></g>
+</svg>
