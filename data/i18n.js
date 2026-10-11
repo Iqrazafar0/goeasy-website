@@ -91,7 +91,7 @@ export const dict = {
         ["UAE Residents", "Emirates ID (both sides) and a valid UAE driving licence."],
         ["Tourists & Visitors", "Passport, visit visa entry stamp, home country licence and an International Driving Permit where required."],
         ["Minimum Age", "Drivers must be at least 21 years old. Sports, exotic and luxury cars may need a higher age."],
-        ["Security Deposit", "A refundable deposit may apply depending on the car. Our team will confirm it at booking."],
+        ["Security Deposit", "A refundable security deposit of AED 2,000 is taken at pickup and returned after the car is checked."],
       ],
     },
 
@@ -109,8 +109,8 @@ export const dict = {
 
     detail: {
       home: "Home",
-      // TODO: deposit, mileage aur extra km ki shartein client se confirm karein
-      deposit: "Deposit", depositVal: "Ask our team",
+      // Deposit: client ne confirm kiya (AED 2,000). TODO: mileage aur extra km client se confirm karein
+      deposit: "Deposit", depositVal: "AED 2,000",
       mileage: "Mileage Limit", mileageVal: "250 km / day",
       extra: "Extra Mileage", extraVal: "AED 25 / km",
       payment: "Payment", paymentVal: "Card, Cash, Crypto",
@@ -267,7 +267,7 @@ export const dict = {
         ["المقيمون في الإمارات", "الهوية الإماراتية (الوجهين) ورخصة قيادة إماراتية سارية."],
         ["السياح والزوار", "جواز السفر وختم الدخول، ورخصة القيادة من بلدك، ورخصة قيادة دولية عند الحاجة."],
         ["الحد الأدنى للعمر", "يجب ألا يقل عمر السائق عن 21 عاماً. قد تتطلب السيارات الرياضية والفاخرة عمراً أكبر."],
-        ["مبلغ التأمين", "قد يُطلب مبلغ تأمين مسترد حسب نوع السيارة، وسيؤكده فريقنا عند الحجز."],
+        ["مبلغ التأمين", "يُؤخذ مبلغ تأمين مسترد قدره 2,000 درهم عند الاستلام ويُعاد بعد فحص السيارة."],
       ],
     },
 
@@ -285,7 +285,7 @@ export const dict = {
 
     detail: {
       home: "الرئيسية",
-      deposit: "مبلغ التأمين", depositVal: "اسأل فريقنا",
+      deposit: "مبلغ التأمين", depositVal: "2,000 درهم",
       mileage: "حد المسافة", mileageVal: "250 كم / يوم",
       extra: "المسافة الإضافية", extraVal: "25 درهم / كم",
       payment: "الدفع", paymentVal: "بطاقة، نقداً، عملات رقمية",
