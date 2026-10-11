@@ -1,8 +1,12 @@
+"use client";
 import Link from "next/link";
 import { site, whatsappLink } from "@/data/site";
+import { categories } from "@/data/cars";
 import { IconWhatsApp } from "./Icons";
+import { useLang } from "./LanguageProvider";
 
 export default function Footer() {
+  const { t, cat } = useLang();
   const year = new Date().getFullYear();
   return (
     <>
@@ -11,44 +15,45 @@ export default function Footer() {
           <div className="footer-grid">
             <div>
               <Link href="/" className="logo"><img src="/logo-white.svg" alt={site.legalName} /></Link>
-              <p>Reliable, well-maintained rental cars in Dubai with clear prices and simple WhatsApp booking.</p>
+              <p>{t.footer.text}</p>
               <p className="ar">{site.arabicName}</p>
             </div>
             <div>
-              <h4>Quick Links</h4>
+              <h4>{t.footer.quick}</h4>
               <ul>
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/fleet">Our Fleet</Link></li>
-                <li><Link href="/about">About Us</Link></li>
-                <li><Link href="/contact">Contact</Link></li>
+                <li><Link href="/fleet">{t.nav.allCars}</Link></li>
+                <li><Link href="/monthly-rentals">{t.nav.monthly}</Link></li>
+                <li><Link href="/prices">{t.nav.prices}</Link></li>
+                <li><Link href="/about">{t.nav.about}</Link></li>
+                <li><Link href="/faqs">{t.nav.faqs}</Link></li>
+                <li><Link href="/contact">{t.nav.contact}</Link></li>
               </ul>
             </div>
             <div>
-              <h4>Car Types</h4>
+              <h4>{t.footer.types}</h4>
               <ul>
-                <li><Link href="/fleet">Economy Cars</Link></li>
-                <li><Link href="/fleet">Sedans</Link></li>
-                <li><Link href="/fleet">SUVs</Link></li>
-                <li><Link href="/fleet">Luxury Cars</Link></li>
+                {categories.map((c) => (
+                  <li key={c.name}><Link href={`/fleet?category=${encodeURIComponent(c.name)}`}>{cat(c.name)}</Link></li>
+                ))}
               </ul>
             </div>
             <div>
-              <h4>Contact</h4>
+              <h4>{t.footer.contact}</h4>
               <ul>
-                <li><a href={`tel:${site.phoneLink}`}>{site.phoneDisplay}</a></li>
+                <li><a href={`tel:${site.phoneLink}`} dir="ltr">{site.phoneDisplay}</a></li>
                 <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-                <li>{site.address}</li>
-                <li>{site.hours}</li>
+                <li>{t.addressShort}</li>
+                <li>{t.hours}</li>
               </ul>
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© {year} {site.legalName}. All rights reserved.</span>
-            <span>Dubai Trade License No. {site.licenseNo}</span>
+            <span>© {year} {site.legalName}. {t.footer.rights}</span>
+            <span>{t.footer.license} {site.licenseNo}</span>
           </div>
         </div>
       </footer>
-      <a className="wa-float" href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <a className="wa-float" href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
         <IconWhatsApp size={30} />
       </a>
     </>

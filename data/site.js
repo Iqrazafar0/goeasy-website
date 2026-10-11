@@ -8,7 +8,7 @@ export const site = {
   licenseNo: "1535456",
   licenseAuthority: "Department of Economy and Tourism, Dubai",
 
-    phoneDisplay: "+971 55 793 1183",
+  phoneDisplay: "+971 55 793 1183",
   phoneLink: "+971557931183",
   whatsapp: "971557931183", // sirf numbers, + ke baghair
   email: "sales@goeasyadventure.com",

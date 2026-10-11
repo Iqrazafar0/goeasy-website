@@ -30,7 +30,7 @@ export default function ScrollEffects() {
             }
           });
         },
-        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+        { threshold: 0, rootMargin: "0px 0px -60px 0px" }
       );
       targets.forEach((t) => io.observe(t));
     } else {
@@ -39,7 +39,7 @@ export default function ScrollEffects() {
 
     // Header shadow + hero parallax
     const header = document.querySelector(".header");
-    const heroBg = document.querySelector(".hero-glow");
+    const heroBg = document.querySelector(".hero-bg") || document.querySelector(".hero-glow");
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;

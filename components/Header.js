@@ -2,40 +2,72 @@
 import { useState } from "react";
 import Link from "next/link";
 import { site, whatsappLink } from "@/data/site";
+import { categories, cars, brands, photo } from "@/data/cars";
+import { useLang, LanguageSwitch } from "./LanguageProvider";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/fleet", label: "Our Fleet" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
+// Sirf wo brands jin ki cars hamare paas hain
+const menuBrands = brands.filter((b) => cars.some((c) => c.brand === b.name));
+
+function Dropdown({ label, children, onClose, wide = "" }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`nav-drop ${wide ? "is-mega" : ""} ${open ? "open" : ""}`} onMouseLeave={() => setOpen(false)}>
+      <button type="button" className="nav-drop-btn" aria-expanded={open} onClick={() => setOpen(!open)} onMouseEnter={() => setOpen(true)}>
+        {label} <span className="caret" aria-hidden="true">▾</span>
+      </button>
+      <div className={`nav-drop-menu ${wide}`} onClick={() => { setOpen(false); onClose(); }}>{children}</div>
+    </div>
+  );
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { t, cat } = useLang();
+  const close = () => setOpen(false);
+
   return (
     <>
-      <div className="topbar">
-        <div className="container">
-          <span className="hide-sm">{site.address}</span>
-          <span>
-            <a href={`tel:${site.phoneLink}`}>{site.phoneDisplay}</a>
-            <span className="hide-sm"> &nbsp;·&nbsp; {site.hours}</span>
-          </span>
-        </div>
-      </div>
       <header className="header">
         <div className="container">
           <Link href="/" className="logo" aria-label={site.name}>
             <img src="/logo.svg" alt={site.legalName} />
           </Link>
-          <button className="menu-btn" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(!open)}>
-            <span /><span /><span />
-          </button>
+
+          <div className="header-right">
+            <LanguageSwitch className="hide-desktop" />
+            <button className="menu-btn" aria-label={t.nav.menu} aria-expanded={open} onClick={() => setOpen(!open)}>
+              <span /><span /><span />
+            </button>
+          </div>
+
           <nav className={`nav ${open ? "open" : ""}`}>
-            {links.map((l) => (
-              <Link key={l.href} href={l.href} onClick={() => setOpen(false)}>{l.label}</Link>
-            ))}
-            <a className="btn btn-navy" href={whatsappLink()} target="_blank" rel="noopener noreferrer">Book Now</a>
+            <Dropdown label={t.nav.carTypes} onClose={close} wide="mega mega-types">
+              {categories.map((c) => (
+                <Link key={c.name} className="mega-type" href={`/fleet?category=${encodeURIComponent(c.name)}`}>
+                  <img src={photo(c.image, 240)} alt="" loading="lazy" />
+                  <span>
+                    <strong>{cat(c.name)}</strong>
+                    <small>{cars.filter((x) => x.category === c.name).length} {t.cat.cars}</small>
+                  </span>
+                </Link>
+              ))}
+              <Link className="mega-all" href="/fleet">{t.nav.allCars} <span className="arrow">→</span></Link>
+            </Dropdown>
+            <Dropdown label={t.nav.brands} onClose={close} wide="mega mega-brands">
+              {menuBrands.map((b) => (
+                <Link key={b.name} className="mega-brand" href={`/fleet?brand=${encodeURIComponent(b.name)}`}>
+                  {b.logo ? <img src={b.logo} alt="" /> : <span className="brand-badge">{b.name.charAt(0)}</span>}
+                  <span>{b.name}</span>
+                </Link>
+              ))}
+              <Link className="mega-all" href="/fleet">{t.allBrandsLink} <span className="arrow">→</span></Link>
+            </Dropdown>
+            <Link href="/monthly-rentals" onClick={close}>{t.nav.monthly}</Link>
+            <Link href="/prices" onClick={close}>{t.nav.prices}</Link>
+            <Link href="/about" onClick={close}>{t.nav.about}</Link>
+            <Link href="/faqs" onClick={close}>{t.nav.faqs}</Link>
+            <Link href="/contact" onClick={close}>{t.nav.contact}</Link>
+            <LanguageSwitch className="hide-mobile" />
           </nav>
         </div>
       </header>

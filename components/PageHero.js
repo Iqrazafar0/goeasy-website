@@ -1,0 +1,16 @@
+"use client";
+import Road from "./Road";
+
+// Andar ke pages ka upar wala hissa, chalti gaari ke saath
+export default function PageHero({ eyebrow, title, text }) {
+  return (
+    <section className="page-hero">
+      <div className="container">
+        <span className="eyebrow">{eyebrow}</span>
+        <h1>{title}</h1>
+        <p>{text}</p>
+      </div>
+      <Road />
+    </section>
+  );
+}
